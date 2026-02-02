@@ -4,9 +4,14 @@
   --muted: #6b7280;
   --bg: #ffffff;
   --border: #e5e7eb;
-  --card: #f9fafb;
-  --link: #0f766e;      /* muted teal */
-  --link-hover: #115e59;
+
+  /* Yellow brand palette */
+  --brand: #f4c430;        /* warm professional yellow */
+  --brand-soft: #fff7d6;   /* very light yellow */
+  --brand-dark: #b08a00;   /* darker yellow for hover */
+
+  --card: #ffffff;
+  --link: #1f2937;
   --max: 980px;
 }
 
@@ -29,7 +34,7 @@ html, body {
 }
 
 header.site-header {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--border);
   background: #fff;
 }
 
@@ -56,7 +61,7 @@ nav a {
   font-weight: 500;
 }
 
-nav a:hover { color: var(--text); }
+nav a:hover { color: var(--brand-dark); }
 
 main { padding: 2.25rem 0; }
 
@@ -82,10 +87,10 @@ p { margin: 0 0 1rem; color: var(--text); }
 
 /* ====== Components ====== */
 .card {
-  background: var(--card);
+  background: var(--brand-soft);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 1.25rem 1.25rem;
+  padding: 1.25rem;
   margin: 1.25rem 0;
 }
 
@@ -102,18 +107,21 @@ a:hover { color: var(--link-hover); }
 .button {
   display: inline-block;
   margin-top: 0.5rem;
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 1.1rem;
   border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text);
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: #111827;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .button:hover {
-  border-color: #d1d5db;
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
+  color: #111827;
 }
+
 
 /* ====== Footer ====== */
 footer.site-footer {
