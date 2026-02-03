@@ -79,7 +79,7 @@ main.container {
 /* ---------- Header ---------- */
 .site-header {
   background: var(--dark);
-  border-bottom: 4px solid var(--yellow);
+  border-bottom: 8px solid var(--yellow);
 }
 
 .site-header .container {
@@ -195,7 +195,7 @@ p {
       var(--card-bg) 70%
     );
   border: 1px solid var(--border);
-  border-left: 6px solid var(--yellow);
+  border-left: 8px solid var(--yellow);
   border-radius: 10px;
   padding: 1.75rem 2rem;
   margin: 0 0 2rem;
@@ -254,7 +254,7 @@ a:hover {
 .site-footer {
   background: var(--dark);
   color: #e0e0e0;
-  border-top: 4px solid var(--yellow);
+  border-top: 8px solid var(--yellow);
 }
 
 .site-footer .container {
