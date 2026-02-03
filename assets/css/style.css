@@ -1,25 +1,28 @@
 /* =========================================================
-   Databoratory — High-end Black & Yellow Theme
-   Gradient applied consistently to all cards
+   Databoratory — Bright Yellow & Soft Grey Theme
    ========================================================= */
 
 /* ---------- Design tokens ---------- */
 :root {
-  --black: #0f0f0f;
-  --text: #121212;
-  --muted-text: #575757;
+  /* Core colours */
+  --dark: #4d4d4d;          /* 70% grey replacing black */
+  --text: #1a1a1a;
+  --muted-text: #666666;
 
-  --yellow: #f2c94c;
-  --yellow-soft: #fff6d6;
+  /* Accent */
+  --yellow: #ffff00;        /* bright yellow */
+  --yellow-soft: #fffde6;   /* softened yellow wash */
 
+  /* Surfaces */
   --bg: #f3f3f3;
   --card-bg: #ffffff;
   --border: #e2e2e2;
 
+  /* Layout */
   --max: 980px;
   --grid-gap: 28px;
-  --grid-line: rgba(242, 201, 76, 0.10);
-  --grid-fade: rgba(242, 201, 76, 0.00);
+  --grid-line: rgba(255, 255, 0, 0.12);
+  --grid-fade: rgba(255, 255, 0, 0);
 }
 
 /* ---------- Reset ---------- */
@@ -75,7 +78,7 @@ main.container {
 
 /* ---------- Header ---------- */
 .site-header {
-  background: var(--black);
+  background: var(--dark);
   border-bottom: 4px solid var(--yellow);
 }
 
@@ -93,11 +96,11 @@ main.container {
   align-items: center;
   gap: 0.65rem;
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
 }
 
 .brand img {
-  height: 50px;
+  height: 70px;
 }
 
 .brand span {
@@ -105,9 +108,10 @@ main.container {
   letter-spacing: 0.3px;
 }
 
+/* ---------- Navigation ---------- */
 nav a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, 0.9);
   margin-left: 1.5rem;
   font-weight: 520;
   position: relative;
@@ -182,13 +186,13 @@ p {
   border-left: 4px solid var(--yellow);
 }
 
-/* ---------- Cards (gradient applied everywhere) ---------- */
+/* ---------- Cards ---------- */
 .card {
   background:
     linear-gradient(
       to right,
       var(--yellow-soft),
-      var(--card-bg) 62%
+      var(--card-bg) 70%
     );
   border: 1px solid var(--border);
   border-left: 6px solid var(--yellow);
@@ -200,7 +204,7 @@ p {
 }
 
 .card:hover {
-  border-color: #d9d9d9;
+  border-color: #d8d8d8;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   transform: translateY(-1px);
 }
@@ -231,25 +235,25 @@ a:hover {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.68rem 1.4rem;
-  background: var(--black);
-  color: #fff;
+  background: var(--dark);
+  color: #ffffff;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 650;
-  border: 1px solid var(--black);
+  border: 1px solid var(--dark);
   transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
 .button:hover {
   background: var(--yellow);
   border-color: var(--yellow);
-  color: var(--black);
+  color: var(--dark);
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--black);
-  color: #bfbfbf;
+  background: var(--dark);
+  color: #e0e0e0;
   border-top: 4px solid var(--yellow);
 }
 
@@ -260,7 +264,7 @@ a:hover {
 }
 
 .site-footer a {
-  color: #bfbfbf;
+  color: #e0e0e0;
   text-decoration: none;
 }
 
