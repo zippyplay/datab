@@ -1,46 +1,61 @@
-/* ====== Base ====== */
-:root{
-  --text: #1f2937;
-  --muted: #6b7280;
-  --bg: #ffffff;
-  --border: #e5e7eb;
+/* =========================================================
+   Databoratory - Clean black/yellow theme
+   ========================================================= */
 
-  /* Yellow brand palette */
-  --brand: #f4c430;        /* warm professional yellow */
-  --brand-soft: #fff7d6;   /* very light yellow */
-  --brand-dark: #b08a00;   /* darker yellow for hover */
+/* ----- Brand palette + layout constants ----- */
+:root {
+  --black: #0f0f0f;
+  --dark-gray: #1a1a1a;
 
-  --card: #ffffff;
-  --link: #1f2937;
+  --text: #121212;
+  --muted-text: #5a5a5a;
+
+  --yellow: #f2c94c;        /* warm, professional yellow */
+  --yellow-soft: #fff4cc;   /* subtle highlight if needed */
+
+  --bg: #fafafa;
+  --card-bg: #ffffff;
+  --border: #e6e6e6;
+
   --max: 980px;
 }
 
+/* ----- Reset-ish ----- */
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--text);
-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
   line-height: 1.65;
 }
 
-/* ====== Layout ====== */
+/* ----- Layout ----- */
 .container {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 2.5rem 1.25rem;
+  padding: 2.75rem 1.25rem;
 }
 
-header.site-header {
-  border-bottom: 3px solid var(--border);
-  background: #fff;
+main.container {
+  padding-top: 2.25rem;
+  padding-bottom: 3rem;
 }
 
-header .container {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+/* ----- Header ----- */
+.site-header {
+  background: var(--black);
+  border-bottom: 1px solid #000;
+}
+
+.site-header .container {
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,106 +63,151 @@ header .container {
 }
 
 .brand {
-  font-weight: 700;
-  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
   text-decoration: none;
-  color: var(--text);
+  color: #fff;
 }
 
-nav a {
-  text-decoration: none;
-  color: var(--muted);
-  margin-left: 1rem;
-  font-weight: 500;
-}
-
-nav a:hover { color: var(--brand-dark); }
-
-main { padding: 2.25rem 0; }
-
-/* ====== Typography ====== */
-h1 {
-  font-size: 2rem;
-  line-height: 1.2;
-  margin: 0 0 0.75rem;
-}
-
-h2 {
-  font-size: 1.25rem;
-  margin: 2rem 0 0.75rem;
-}
-
-h1, h2 {
-  font-weight: 600;
-  letter-spacing: -0.01em;
+.brand img {
+  height: 34px;
+  width: auto;
+  display: block;
 }
 
 .brand span {
   font-weight: 700;
   letter-spacing: 0.2px;
+  color: #fff;
 }
 
-p { margin: 0 0 1rem; color: var(--text); }
+nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.82);
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--yellow);
+}
+
+/* ----- Typography ----- */
+h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 2.6rem 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1rem;
+}
 
 .tagline {
-  color: var(--muted);
+  color: var(--muted-text);
   font-size: 1.05rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* ====== Components ====== */
+/* ----- Cards ----- */
 .card {
-  background: var(--brand-soft);
+  background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.25rem;
-  margin: 1.25rem 0;
+  border-radius: 8px;
+  padding: 1.75rem 2rem;
+  margin: 0 0 2rem;
 }
 
+.card:hover {
+  border-color: #dcdcdc;
+}
+
+/* ----- Lists ----- */
 ul {
   margin: 0.5rem 0 0;
   padding-left: 1.25rem;
 }
 
-li { margin: 0.35rem 0; }
+li {
+  margin: 0.35rem 0;
+}
 
-a { color: var(--link); }
-a:hover { color: var(--link-hover); }
+/* ----- Links ----- */
+a {
+  color: var(--text);
+}
 
+a:hover {
+  color: var(--yellow);
+}
+
+/* ----- Button (primary action) ----- */
 .button {
   display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.7rem 1.1rem;
-  border-radius: 12px;
-  border: 1px solid var(--brand);
-  background: var(--brand);
-  color: #111827;
+  margin-top: 1rem;
+  padding: 0.65rem 1.25rem;
+  background: var(--black);
+  color: #fff;
+  border-radius: 6px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
+  border: 1px solid var(--black);
 }
 
 .button:hover {
-  background: var(--brand-dark);
-  border-color: var(--brand-dark);
-  color: #111827;
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--black);
 }
 
-
-/* ====== Footer ====== */
-footer.site-footer {
-  border-top: 1px solid var(--border);
-  color: var(--muted);
+/* ----- Footer ----- */
+.site-footer {
+  background: var(--black);
+  color: #bfbfbf;
+  border-top: 1px solid #000;
 }
 
-footer .container {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  font-size: 0.95rem;
+.site-footer .container {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  font-size: 0.92rem;
 }
 
-/* ====== Small screens ====== */
+.site-footer a {
+  color: #bfbfbf;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--yellow);
+}
+
+/* ----- Responsive ----- */
 @media (max-width: 700px) {
-  header .container { flex-direction: column; align-items: flex-start; }
-  nav a { margin-left: 0; margin-right: 1rem; }
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin-left: 0;
+    margin-right: 1.25rem;
+  }
+
+  .card {
+    padding: 1.35rem 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
 }
 
