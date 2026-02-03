@@ -5,7 +5,7 @@
 /* ---------- Design tokens ---------- */
 :root {
   /* Core colours */
-  --dark: #4d4d4d;          /* 70% grey replacing black */
+  --dark: #333333;          /* 80% grey replacing black */
   --text: #1a1a1a;
   --muted-text: #666666;
 
@@ -79,7 +79,7 @@ main.container {
 /* ---------- Header ---------- */
 .site-header {
   background: var(--dark);
-  border-bottom: 8px solid var(--yellow);
+  border-bottom: 12px solid var(--yellow);
 }
 
 .site-header .container {
@@ -100,7 +100,7 @@ main.container {
 }
 
 .brand img {
-  height: 70px;
+  height: 80px;
 }
 
 .brand span {
