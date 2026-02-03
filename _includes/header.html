@@ -5,11 +5,11 @@
       <span>{{ site.title }}</span>
     </a>
     <nav>
-      <a href="services.html">Services</a>
-      <a href="approach.html">Approach</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+      <a href="services.html" {% if page.url contains "services" %}aria-current="page"{% endif %}>Services</a>
+      <a href="approach.html" {% if page.url contains "approach" %}aria-current="page"{% endif %}>Approach</a>
+      <a href="about.html" {% if page.url contains "about" %}aria-current="page"{% endif %}>About</a>
+      <a href="contact.html" {% if page.url contains "contact" %}aria-current="page"{% endif %}>Contact</a>
+</nav>
   </div>
 </header>
 

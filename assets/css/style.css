@@ -1,26 +1,49 @@
 /* =========================================================
-   Databoratory - Clean black/yellow theme
+   Databoratory — High-end Black & Yellow Theme
+   Adds:
+   - subtle yellow rhythm grid
+   - active nav highlight (aria-current="page")
+   - darker background for contrast
+   - optional per-page accent tuning
    ========================================================= */
 
-/* ----- Brand palette + layout constants ----- */
+/* ---------- Design tokens ---------- */
 :root {
   --black: #0f0f0f;
-  --dark-gray: #1a1a1a;
-
   --text: #121212;
-  --muted-text: #5a5a5a;
+  --muted-text: #575757;
 
-  --yellow: #f2c94c;        /* warm, professional yellow */
-  --yellow-soft: #fff4cc;   /* subtle highlight if needed */
+  /* Default accent (can be overridden per page) */
+  --yellow: #f2c94c;
+  --yellow-soft: #fff6d6;
 
-  --bg: #fafafa;
+  /* Background + surfaces */
+  --bg: #f3f3f3;          /* darker than before (more contrast) */
   --card-bg: #ffffff;
-  --border: #e6e6e6;
+  --border: #e2e2e2;
 
+  /* Layout */
   --max: 980px;
+
+  /* Rhythm grid tuning */
+  --grid-gap: 28px;       /* vertical rhythm spacing */
+  --grid-line: rgba(242, 201, 76, 0.10); /* very subtle yellow */
+  --grid-fade: rgba(242, 201, 76, 0.00); /* fade to transparent */
 }
 
-/* ----- Reset-ish ----- */
+/* ---------- Optional per-page accent tuning ----------
+   If you want different yellow "energy" per page,
+   add one of these classes to <body> in the layout later:
+   page-home, page-services, page-approach, page-about, page-contact, page-privacy
+*/
+body.page-home    { --yellow: #f2c94c; --yellow-soft: #fff6d6; } /* default */
+body.page-services{ --yellow: #f4c430; --yellow-soft: #fff2c2; }
+body.page-approach{ --yellow: #f1c232; --yellow-soft: #fff7db; }
+body.page-about   { --yellow: #f5cc4a; --yellow-soft: #fff4cc; }
+body.page-contact { --yellow: #f7d24c; --yellow-soft: #fff6d1; }
+body.page-privacy { --yellow: #edc85a; --yellow-soft: #fff7de; }
+
+/* ---------- Reset ---------- */
 * { box-sizing: border-box; }
 
 html, body {
@@ -28,14 +51,40 @@ html, body {
   padding: 0;
 }
 
+/* ---------- Base ---------- */
 body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ----- Layout ----- */
+/* Subtle vertical rhythm grid (very premium, very light) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      var(--grid-fade) 0px,
+      var(--grid-fade) calc(var(--grid-gap) - 1px),
+      var(--grid-line) var(--grid-gap)
+    );
+  opacity: 1;
+}
+
+/* Ensure content sits above the grid overlay */
+.site-header, main, .site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Layout ---------- */
 .container {
   max-width: var(--max);
   margin: 0 auto;
@@ -44,13 +93,13 @@ body {
 
 main.container {
   padding-top: 2.25rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3.25rem;
 }
 
-/* ----- Header ----- */
+/* ---------- Header ---------- */
 .site-header {
   background: var(--black);
-  border-bottom: 1px solid #000;
+  border-bottom: 4px solid var(--yellow);
 }
 
 .site-header .container {
@@ -77,60 +126,122 @@ main.container {
 }
 
 .brand span {
-  font-weight: 700;
-  letter-spacing: 0.2px;
+  font-weight: 750;
+  letter-spacing: 0.3px;
   color: #fff;
 }
 
 nav a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.86);
   margin-left: 1.5rem;
-  font-weight: 500;
+  font-weight: 520;
+  position: relative;
+  padding-bottom: 0.25rem;
 }
 
+/* Hover */
 nav a:hover {
   color: var(--yellow);
 }
 
-/* ----- Typography ----- */
+/* Active nav highlight:
+   Works when the current page link has aria-current="page"
+*/
+nav a[aria-current="page"] {
+  color: var(--yellow);
+}
+
+nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15rem;
+  height: 2px;
+  background: var(--yellow);
+  border-radius: 999px;
+  opacity: 0.95;
+}
+
+/* ---------- Typography ---------- */
 h1 {
-  font-size: 2.2rem;
-  line-height: 1.2;
+  font-size: 2.25rem;
+  line-height: 1.18;
   margin: 0 0 0.6rem;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.018em;
 }
 
 h2 {
   font-size: 1.25rem;
-  margin: 2.6rem 0 0.75rem;
+  margin: 2.75rem 0 0.75rem;
   letter-spacing: -0.01em;
+  position: relative;
+}
+
+/* Yellow marker for section headers */
+h2::before {
+  content: "";
+  position: absolute;
+  left: -1.25rem;
+  top: 0.35em;
+  width: 6px;
+  height: 0.9em;
+  background: var(--yellow);
+  border-radius: 2px;
+}
+
+/* Add a subtle yellow underline for h1 (optional, premium) */
+h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--yellow);
+  border-radius: 999px;
+  margin-top: 0.65rem;
+  opacity: 0.95;
 }
 
 p {
   margin: 0 0 1rem;
 }
 
+/* ---------- Tagline ---------- */
 .tagline {
   color: var(--muted-text);
   font-size: 1.05rem;
   margin-bottom: 2rem;
+  padding-left: 0.9rem;
+  border-left: 4px solid var(--yellow);
 }
 
-/* ----- Cards ----- */
+/* ---------- Cards ---------- */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-left: 6px solid var(--yellow);
+  border-radius: 10px;
   padding: 1.75rem 2rem;
   margin: 0 0 2rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
 }
 
+/* Alternate cards with a faint yellow wash (very subtle) */
+.card:nth-of-type(even) {
+  background:
+    linear-gradient(to right, var(--yellow-soft), var(--card-bg) 62%);
+}
+
+/* Small hover lift (quiet luxury) */
 .card:hover {
-  border-color: #dcdcdc;
+  border-color: #d9d9d9;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
 }
 
-/* ----- Lists ----- */
+/* ---------- Lists ---------- */
 ul {
   margin: 0.5rem 0 0;
   padding-left: 1.25rem;
@@ -140,26 +251,29 @@ li {
   margin: 0.35rem 0;
 }
 
-/* ----- Links ----- */
+/* ---------- Links ---------- */
 a {
   color: var(--text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 a:hover {
   color: var(--yellow);
 }
 
-/* ----- Button (primary action) ----- */
+/* ---------- Button ---------- */
 .button {
   display: inline-block;
   margin-top: 1rem;
-  padding: 0.65rem 1.25rem;
+  padding: 0.68rem 1.4rem;
   background: var(--black);
   color: #fff;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 650;
   border: 1px solid var(--black);
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
 .button:hover {
@@ -168,11 +282,11 @@ a:hover {
   color: var(--black);
 }
 
-/* ----- Footer ----- */
+/* ---------- Footer ---------- */
 .site-footer {
   background: var(--black);
   color: #bfbfbf;
-  border-top: 1px solid #000;
+  border-top: 4px solid var(--yellow);
 }
 
 .site-footer .container {
@@ -190,7 +304,7 @@ a:hover {
   color: var(--yellow);
 }
 
-/* ----- Responsive ----- */
+/* ---------- Responsive ---------- */
 @media (max-width: 700px) {
   .site-header .container {
     flex-direction: column;
@@ -202,12 +316,17 @@ a:hover {
     margin-right: 1.25rem;
   }
 
-  .card {
-    padding: 1.35rem 1.25rem;
+  h1 {
+    font-size: 1.95rem;
   }
 
-  h1 {
-    font-size: 1.9rem;
+  h2::before {
+    left: -0.75rem;
+  }
+
+  .card {
+    padding: 1.35rem 1.25rem;
+    border-radius: 10px;
   }
 }
 
