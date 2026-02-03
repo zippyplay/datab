@@ -1,10 +1,6 @@
 /* =========================================================
    Databoratory — High-end Black & Yellow Theme
-   Adds:
-   - subtle yellow rhythm grid
-   - active nav highlight (aria-current="page")
-   - darker background for contrast
-   - optional per-page accent tuning
+   Gradient applied consistently to all cards
    ========================================================= */
 
 /* ---------- Design tokens ---------- */
@@ -13,35 +9,18 @@
   --text: #121212;
   --muted-text: #575757;
 
-  /* Default accent (can be overridden per page) */
   --yellow: #f2c94c;
   --yellow-soft: #fff6d6;
 
-  /* Background + surfaces */
-  --bg: #f3f3f3;          /* darker than before (more contrast) */
+  --bg: #f3f3f3;
   --card-bg: #ffffff;
   --border: #e2e2e2;
 
-  /* Layout */
   --max: 980px;
-
-  /* Rhythm grid tuning */
-  --grid-gap: 28px;       /* vertical rhythm spacing */
-  --grid-line: rgba(242, 201, 76, 0.10); /* very subtle yellow */
-  --grid-fade: rgba(242, 201, 76, 0.00); /* fade to transparent */
+  --grid-gap: 28px;
+  --grid-line: rgba(242, 201, 76, 0.10);
+  --grid-fade: rgba(242, 201, 76, 0.00);
 }
-
-/* ---------- Optional per-page accent tuning ----------
-   If you want different yellow "energy" per page,
-   add one of these classes to <body> in the layout later:
-   page-home, page-services, page-approach, page-about, page-contact, page-privacy
-*/
-body.page-home    { --yellow: #f2c94c; --yellow-soft: #fff6d6; } /* default */
-body.page-services{ --yellow: #f4c430; --yellow-soft: #fff2c2; }
-body.page-approach{ --yellow: #f1c232; --yellow-soft: #fff7db; }
-body.page-about   { --yellow: #f5cc4a; --yellow-soft: #fff4cc; }
-body.page-contact { --yellow: #f7d24c; --yellow-soft: #fff6d1; }
-body.page-privacy { --yellow: #edc85a; --yellow-soft: #fff7de; }
 
 /* ---------- Reset ---------- */
 * { box-sizing: border-box; }
@@ -61,7 +40,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle vertical rhythm grid (very premium, very light) */
+/* Subtle vertical rhythm grid */
 body::before {
   content: "";
   position: fixed;
@@ -75,10 +54,8 @@ body::before {
       var(--grid-fade) calc(var(--grid-gap) - 1px),
       var(--grid-line) var(--grid-gap)
     );
-  opacity: 1;
 }
 
-/* Ensure content sits above the grid overlay */
 .site-header, main, .site-footer {
   position: relative;
   z-index: 1;
@@ -121,14 +98,11 @@ main.container {
 
 .brand img {
   height: 34px;
-  width: auto;
-  display: block;
 }
 
 .brand span {
   font-weight: 750;
   letter-spacing: 0.3px;
-  color: #fff;
 }
 
 nav a {
@@ -140,14 +114,10 @@ nav a {
   padding-bottom: 0.25rem;
 }
 
-/* Hover */
 nav a:hover {
   color: var(--yellow);
 }
 
-/* Active nav highlight:
-   Works when the current page link has aria-current="page"
-*/
 nav a[aria-current="page"] {
   color: var(--yellow);
 }
@@ -161,7 +131,6 @@ nav a[aria-current="page"]::after {
   height: 2px;
   background: var(--yellow);
   border-radius: 999px;
-  opacity: 0.95;
 }
 
 /* ---------- Typography ---------- */
@@ -172,6 +141,16 @@ h1 {
   letter-spacing: -0.018em;
 }
 
+h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--yellow);
+  border-radius: 999px;
+  margin-top: 0.65rem;
+}
+
 h2 {
   font-size: 1.25rem;
   margin: 2.75rem 0 0.75rem;
@@ -179,7 +158,6 @@ h2 {
   position: relative;
 }
 
-/* Yellow marker for section headers */
 h2::before {
   content: "";
   position: absolute;
@@ -189,18 +167,6 @@ h2::before {
   height: 0.9em;
   background: var(--yellow);
   border-radius: 2px;
-}
-
-/* Add a subtle yellow underline for h1 (optional, premium) */
-h1::after {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 4px;
-  background: var(--yellow);
-  border-radius: 999px;
-  margin-top: 0.65rem;
-  opacity: 0.95;
 }
 
 p {
@@ -216,29 +182,27 @@ p {
   border-left: 4px solid var(--yellow);
 }
 
-/* ---------- Cards ---------- */
+/* ---------- Cards (gradient applied everywhere) ---------- */
 .card {
-  background: var(--card-bg);
+  background:
+    linear-gradient(
+      to right,
+      var(--yellow-soft),
+      var(--card-bg) 62%
+    );
   border: 1px solid var(--border);
   border-left: 6px solid var(--yellow);
   border-radius: 10px;
   padding: 1.75rem 2rem;
   margin: 0 0 2rem;
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
 }
 
-/* Alternate cards with a faint yellow wash (very subtle) */
-.card:nth-of-type(even) {
-  background:
-    linear-gradient(to right, var(--yellow-soft), var(--card-bg) 62%);
-}
-
-/* Small hover lift (quiet luxury) */
 .card:hover {
   border-color: #d9d9d9;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   transform: translateY(-1px);
-  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
 }
 
 /* ---------- Lists ---------- */
@@ -326,7 +290,6 @@ a:hover {
 
   .card {
     padding: 1.35rem 1.25rem;
-    border-radius: 10px;
   }
 }
 
